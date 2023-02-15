@@ -1,0 +1,20 @@
+// babel流程：源代码->解析->转换->代码生成目标源代码
+// babel转译分类：会将源代码分成syntax（语法）和api（函数或方法）两部分来处理
+// babel使用polyfill来处理api，该库分为两部分：core-js和regenerator-time。（core-js主要处理es6绝大部分语法，regenerator-time处理构造器函数）
+// 在@babel/preset-env编译时转译的问题: 1. api转译时会直接修改全局变量或者修改全局变量的原型。2. syntax转译时会重复自定义辅助函数helper
+// 执行顺序：从后往前执行
+
+{
+  "presets": [
+    [
+      "@babel/preset-env"
+    ],
+    // 转换react语法
+    "@babel/preset-react",
+    // 和ts-loader方案二选一，目的是把ts转为js
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ]
+}

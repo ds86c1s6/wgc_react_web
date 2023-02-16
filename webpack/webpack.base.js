@@ -39,7 +39,8 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".less"],
     alias: {
-      "@": paths.srcPath,
+      "@": `${paths.srcPath}`,
+      less: `${paths.rootPath}/less`,
     },
   },
   // 用来指定loader的使用和匹配规则
@@ -117,7 +118,7 @@ module.exports = {
             options: {
               modules: {
                 mode: "local",
-                localIdentName: "[name]_[hash:base64:5]",
+                localIdentName: "[name]/[local]_[hash:5]",
                 localIdentContext: paths.srcPath,
               },
               importLoaders: 3,
@@ -156,7 +157,7 @@ module.exports = {
       "process.env.PUBLIC_PATH": JSON.stringify(paths.publicPath),
     }),
     new HtmlWebpackPlugin({
-      title: "html文档的标题",
+      // title: "html文档的标题",
       // 指定输出的文档名
       filename: "index.html",
       // html模板所在的位置，默认支持html和ejs模板语法，处理文件后缀为html的模板会与html-loader冲突

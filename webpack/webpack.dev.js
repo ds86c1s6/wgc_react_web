@@ -19,7 +19,7 @@ module.exports = merge(base, {
   // },
   devServer: {
     // 开启时自动打开浏览器
-    open: false,
+    open: true,
     port: 8233,
     // 启动webpack-dev-server时的host
     host: config.getNetworkIp(),

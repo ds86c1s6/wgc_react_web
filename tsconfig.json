@@ -43,10 +43,9 @@
     "moduleResolution": "node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
-    // "paths": { // 路径映射，相对于baseUrl
-    //   // 如使用jq时不想使用默认版本，而需要手动指定版本，可进行如下配置
-    //   "jquery": ["node_modules/jquery/dist/jquery.min.js"]
-    // },
+    "paths": { // 路径映射，相对于baseUrl
+      "@/*":["src/*"]
+    },
     // "rootDirs": ["src","out"], // 将多个目录放在一个虚拟目录下，用于运行时，即编译后引入文件的位置可能发生变化，这也设置可以虚拟src和out在同一个目录下，不用再去改变路径也不会报错
     // "listEmittedFiles": true, // 打印输出文件
     // "listFiles": true// 打印编译的文件(包括引用的声明文件)

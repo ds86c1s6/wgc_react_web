@@ -43,6 +43,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "antd": "^5.2.1",
     "dayjs": "^1.11.7",
     "dva-core": "^2.0.4",
     "dva-loading": "^3.0.22",

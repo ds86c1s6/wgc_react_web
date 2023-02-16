@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Button } from 'antd'
 import style from './app.module.less'
 
 const App = (props) => {
@@ -15,7 +16,7 @@ const App = (props) => {
   return (
     <div className={style.appHome}>
       {user.name}
-      <button onClick={setUserName}>点击切换姓名</button>
+      <Button onClick={setUserName}>点击切换姓名</Button>
     </div>
   )
 }

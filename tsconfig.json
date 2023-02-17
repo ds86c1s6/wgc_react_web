@@ -4,7 +4,7 @@
     // "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
     // "diagnostics": true, // 打印诊断信息 
     "target": "ES5", // 目标语言的版本
-    "module": "ES2015", // 生成代码的模板标准
+    "module": "ES2022", // 生成代码的模板标准
     // "outFile": "./app.js", // 将多个相互依赖的文件生成一个文件，可以用在AMD模块中，即开启时应设置"module": "AMD",
     "lib": ["DOM", "ES2015", "ScriptHost", "ES2019.Array"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",
     // "allowJS": true, // 允许编译器编译JS，JSX文件
@@ -26,7 +26,7 @@
     // "importHelpers": true, // 通过tslib引入helper函数，文件必须是模块
     // "downlevelIteration": true, // 降级遍历器实现，如果目标源是es3/5，那么遍历器会有降级的实现
     // "strict": true, // 开启所有严格的类型检查
-    "jsx": "react", // 指定 jsx 格式
+    "jsx": "react-jsx", // 指定 jsx 格式
     // "alwaysStrict": true, // 在代码中注入'use strict'
     // "noImplicitAny": true, // 不允许隐式的any类型
     // "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量

@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
-import history from '@/core/history'
+import { useNavigate } from 'react-router-dom'
 
 const Home =  (props) => {
   const { dispatch, user = {} } = props;
+  const navigate = useNavigate();
 
   const setUserName = () => {
     dispatch({
@@ -17,7 +18,7 @@ const Home =  (props) => {
     <div>
       {user.name}
       <Button onClick={setUserName}>点击切换姓名</Button>
-      <Button onClick={() => history.push('/demo1')}>跳转demo1</Button>
+      <Button onClick={() => navigate('/demo1')}>跳转demo1</Button>
     </div>
   )
 }

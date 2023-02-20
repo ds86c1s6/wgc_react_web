@@ -1,13 +1,14 @@
 import React from 'react'
-import history from '@/core/history'
+import { useNavigate } from 'react-router-dom'
 import { Button } from 'antd'
 
 const Demo1 =  () => {
+  const navigate = useNavigate();
 
   return (
     <div>
       demo1
-      <Button onClick={() => history.replace('/')}>返回</Button>
+      <Button onClick={() => navigate('/')}>返回</Button>
     </div>
   )
 }

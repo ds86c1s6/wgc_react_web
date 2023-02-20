@@ -1,5 +1,7 @@
 import loadable from '@/components/Loadable'
-import { lazy, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
+import Home from '@/pages/home'
+import Demo1 from '@/pages/demo1'
 
 
 // const Layout = (path) => {
@@ -16,11 +18,13 @@ const routes = [
     path: "/",
     // component: Layout('/'),
     component: loadable(() => import('@/pages/home')),
+    // component: <Home />,
   },
   {
     path: "/demo1",
     // component: Layout('/demo1'),
     component: loadable(() => import('@/pages/demo1')),
+    // component: <Demo1 />,
   },
 ];
 

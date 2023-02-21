@@ -1,28 +1,30 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Button } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import React, { ReactElement } from 'react'
+import { Button, List } from 'antd'
+import { useNavigate, To } from 'react-router-dom'
+import routes, { RouteItem } from '@/routes/routes'
+import { isDemoRoute } from '@/utils/utils'
+
+interface ListItemProps {
+  component: ReactElement;
+  path?: To;
+}
 
 const Home =  (props) => {
-  const { dispatch, user = {} } = props;
+  const { dispatch } = props;
   const navigate = useNavigate();
 
-  const setUserName = () => {
-    dispatch({
-      type: 'user/saveName',
-      payload: '张磊'
-    })
-  }
+  const demoList: ListItemProps[] = routes.filter((i: RouteItem) => isDemoRoute(i.path)).map((item) => ({
+    'component': <Button onClick={() => navigate(item.path)}>{item.description}</Button>,
+  }))
 
   return (
-    <div>
-      {user.name}
-      <Button onClick={setUserName}>点击切换姓名</Button>
-      <Button onClick={() => navigate('/demo1')}>跳转demo1</Button>
-    </div>
+    <List 
+      itemLayout="vertical"
+      dataSource={demoList}
+      renderItem={(item: ListItemProps) => <List.Item>{item.component}</List.Item>}
+    >
+    </List>
   )
 }
 
-export default connect(({ user }: any) => ({
-  user
-}))(Home);
+export default Home;

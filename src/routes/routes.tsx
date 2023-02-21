@@ -39,12 +39,12 @@ const routes: RouteItem[] = [
   {
     path: "/",
     // component: Layout('/'),
-    component: loadable(() => import('@/pages/home')),
-    // component: <Home />,
+    // component: loadable(() => import('@/pages/home')),
+    component: <Home />,
     description: '主页'
   },
   {
-    path: "/demo1",
+    path: "/demo1/*",
     // component: Layout('/demo1'),
     // component: loadable(() => import('@/pages/demo1')),
     component: <Demo1 />,

@@ -13,7 +13,7 @@ const Home =  (props) => {
   const { dispatch } = props;
   const navigate = useNavigate();
 
-  const demoList: ListItemProps[] = routes.filter((i: RouteItem) => isDemoRoute(i.path)).map((item) => ({
+  const demoList: ListItemProps[] = routes.filter((i: RouteItem) => !!i.demoRoot).map((item) => ({
     'component': <Button onClick={() => navigate(item.path)}>{item.description}</Button>,
   }))
 

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Routes, Route } from 'react-router-dom'
 import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
+import { portalRoutes } from '@/routes/routes'
 import styles from './index.module.less'
 
 const Demo1 =  () => {
@@ -25,7 +26,20 @@ const Demo1 =  () => {
       }
 
       <BodyPortal>
-        <TransitionSwitch/>
+        {/* <TransitionSwitch/> */}
+        <Routes>
+          {
+            portalRoutes.map((route: any) => {
+              return (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}
+                />
+              )
+            })
+          }
+        </Routes>
       </BodyPortal>
     </div>
   )

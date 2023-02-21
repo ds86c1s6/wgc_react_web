@@ -11,7 +11,8 @@ export interface RouteItem {
   animationConfig?: {
     enter: string;
     exit: string;
-  }
+  },
+  demoRoot?: boolean
 }
 
 
@@ -24,6 +25,16 @@ export interface RouteItem {
 //   )
 // }
 
+
+export const portalRoutes = [
+  {
+    path: "/demo1/demo2",
+    // component: Layout('/demo1'),
+    component: <Demo2 />,
+    // component: <Demo1 />,
+    description: 'demo2：热得快给你的看热闹广阔的让你的认可'
+  },
+]
 const routes: RouteItem[] = [
   {
     path: "/",
@@ -35,24 +46,11 @@ const routes: RouteItem[] = [
   {
     path: "/demo1",
     // component: Layout('/demo1'),
-    component: loadable(() => import('@/pages/demo1')),
-    // component: <Demo1 />,
-    description: 'demo1：portal实现路由持久化'
+    // component: loadable(() => import('@/pages/demo1')),
+    component: <Demo1 />,
+    description: 'demo1：portal实现路由持久化',
+    demoRoot: true
   },
-  {
-    path: "/demo1/*",
-    component: () => {},
-    description: ''
-  },
+  // ...portalRoutes
 ];
-
-export const portalRoutes = [
-  {
-    path: "/demo1/demo2",
-    // component: Layout('/demo1'),
-    component: <Demo2 />,
-    // component: <Demo1 />,
-    description: 'demo2：热得快给你的看热闹广阔的让你的认可'
-  },
-]
 export default routes

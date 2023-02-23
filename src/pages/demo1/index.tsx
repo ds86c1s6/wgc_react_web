@@ -5,11 +5,12 @@ import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
 import { portalRoutes } from '@/routes/routes'
 import styles from './index.module.less'
-import messageBlink from '@/utils/message-blink'
+import messageFactory from '@/utils/message-blink'
 
 const Demo1 =  () => {
   const navigate = useNavigate();
   const [showNormalPortal, setShowNormalPortal] = useState(false)
+  const { isBlink, startBilnk, stopBlink } = messageFactory('新消息2222');
 
   return (
     <div className="commonPage">
@@ -18,11 +19,7 @@ const Demo1 =  () => {
       <Button onClick={() => navigate('/demo1/demo2')}>动画路由切换</Button>
       <Divider />
       <Button onClick={() => {
-        if(!messageBlink.timer) {
-          messageBlink.start('新消息2222')
-        }else {
-          messageBlink.stop()
-        }
+        !isBlink ? startBilnk() : stopBlink()
       }}>消息闪烁</Button>
 
 

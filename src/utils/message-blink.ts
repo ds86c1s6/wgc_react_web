@@ -5,7 +5,7 @@
  * 关闭：message.stop();
  */
 
-export const message = {
+const message = {
   timer: null,
   oldTitle: document.title,
   time: 0,
@@ -26,5 +26,8 @@ export const message = {
   stop: () => {
     document.title = message.oldTitle;
     clearInterval(message.timer);
+    message.timer = null;
   },
 };
+
+export default message;

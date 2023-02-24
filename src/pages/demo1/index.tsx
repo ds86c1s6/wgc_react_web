@@ -1,26 +1,31 @@
 import React, { useState } from 'react'
-import { useNavigate, Routes, Route } from 'react-router-dom'
+import { useNavigate, Routes, Route, useLocation } from 'react-router-dom'
 import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
 import { portalRoutes } from '@/routes/routes'
 import styles from './index.module.less'
 import messageFactory from '@/utils/message-blink'
+import Demo2 from '@/pages/demo2'
 
 const Demo1 =  () => {
   const navigate = useNavigate();
   const [showNormalPortal, setShowNormalPortal] = useState(false)
-  const { isBlink, startBilnk, stopBlink } = messageFactory('新消息2222');
+  const { isBlink, startBilnk, stopBlink } = messageFactory();
+  const [count, setCount] = useState(0)
+  const location = useLocation();
 
   return (
     <div className="commonPage">
       <Button onClick={() => setShowNormalPortal(true)}>非路由情况下的普通portal使用</Button>
       <Divider />
-      <Button onClick={() => navigate('/demo1/demo2')}>动画路由切换</Button>
+      <Button onClick={() => navigate('/demo2')}>动画路由切换</Button>
       <Divider />
       <Button onClick={() => {
-        !isBlink ? startBilnk() : stopBlink()
-      }}>消息闪烁</Button>
+        // !isBlink ? startBilnk('五条新消息') : stopBlink()
+        startBilnk(`${count}条新消息`)
+        setCount(count+1);
+      }} onDoubleClick={() => stopBlink()}>消息闪烁</Button>
 
 
       {// 直接挂载到body下
@@ -31,10 +36,10 @@ const Demo1 =  () => {
         )
       }
 
-      <BodyPortal>
+      {/* <BodyPortal> */}
         {/* <TransitionSwitch/> */}
-        <Routes>
-          {
+        <Routes location={location}>
+          {/* {
             portalRoutes.map((route: any) => {
               return (
                 <Route
@@ -44,9 +49,10 @@ const Demo1 =  () => {
                 />
               )
             })
-          }
+          } */}
+          <Route path='/demo2' element={<Demo2 />} />
         </Routes>
-      </BodyPortal>
+      {/* </BodyPortal> */}
     </div>
   )
 }

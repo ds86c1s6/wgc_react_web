@@ -28,7 +28,7 @@ export interface RouteItem {
 
 export const portalRoutes = [
   {
-    path: "/demo1/demo2",
+    path: "/demo2",
     // component: Layout('/demo1'),
     component: <Demo2 />,
     // component: <Demo1 />,

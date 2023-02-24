@@ -5,28 +5,26 @@
  * 关闭：message.stop();
  */
 import { useState } from "react";
-const messageFactory = (msg: string, interval: number = 600) => {
+
+const messageFactory = (
+  interval: number = 600
+): { isBlink: boolean; startBilnk: Function; stopBlink: Function } => {
   const [isBlink, setIsBlink] = useState<NodeJS.Timer | string>("");
   const oldTitle = document.title;
-  const newTitle = msg;
   let time = 0;
   // 开始闪烁
-  const startBilnk = () => {
-    const tmp: NodeJS.Timer = setInterval(() => {
+  const startBilnk = (msg) => {
+    isBlink && stopBlink();
+    const tmp = setInterval(() => {
       time++;
-      let title = "";
-      if (time % 2 === 0) {
-        title = oldTitle;
-      } else {
-        title = newTitle;
-      }
-      document.title = title;
+      document.title = time % 2 === 0 ? oldTitle : msg;
     }, interval);
     setIsBlink(tmp);
   };
   // 结束闪烁
   const stopBlink = () => {
     document.title = oldTitle;
+    time = 0;
     clearInterval(isBlink);
     setIsBlink("");
   };

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Route, Routes, HashRouter } from 'react-router-dom'
 import routes from './routes'
 
 export default () => {
   
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {
           routes.map((route: any) => {
@@ -19,6 +19,6 @@ export default () => {
           })
         }
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }

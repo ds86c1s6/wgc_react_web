@@ -19,7 +19,7 @@ const Demo1 =  () => {
     <div className="commonPage">
       <Button onClick={() => setShowNormalPortal(true)}>非路由情况下的普通portal使用</Button>
       <Divider />
-      <Button onClick={() => navigate('/demo2')}>动画路由切换</Button>
+      <Button onClick={() => navigate('/demo1/demo2')}>动画路由切换</Button>
       <Divider />
       <Button onClick={() => {
         // !isBlink ? startBilnk('五条新消息') : stopBlink()
@@ -50,7 +50,7 @@ const Demo1 =  () => {
               )
             })
           } */}
-          <Route path='/demo2' element={<Demo2 />} />
+          <Route path='/demo1/demo2' element={<Demo2 />} />
         </Routes>
       {/* </BodyPortal> */}
     </div>

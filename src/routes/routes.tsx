@@ -37,7 +37,7 @@ export const portalRoutes = [
 ]
 const routes: RouteItem[] = [
   {
-    path: "/",
+    path: "/home",
     // component: Layout('/'),
     // component: loadable(() => import('@/pages/home')),
     component: <Home />,

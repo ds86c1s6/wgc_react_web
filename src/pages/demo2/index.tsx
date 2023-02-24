@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react'
 const Demo2 =  (props) => {
 
   return (
-    <div>45465416584</div>
+    <div className='portalPage'>45465416584</div>
   )
 }
 

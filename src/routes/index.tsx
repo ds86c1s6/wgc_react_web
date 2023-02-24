@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route, Routes, HashRouter } from 'react-router-dom'
+import { Route, Routes, HashRouter, Navigate } from 'react-router-dom'
 import routes from './routes'
 
 export default () => {
@@ -18,6 +18,7 @@ export default () => {
             )
           })
         }
+        <Route path='/' element={<Navigate replace to="/home" />} />
       </Routes>
     </HashRouter>
   )

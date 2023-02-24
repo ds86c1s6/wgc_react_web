@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
-import { useNavigate, Routes, Route, useLocation } from 'react-router-dom'
+import { useNavigate, Routes, Route, useLocation, Outlet } from 'react-router-dom'
 import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
-import { portalRoutes } from '@/routes/routes'
 import styles from './index.module.less'
 import messageFactory from '@/utils/message-blink'
-import Demo2 from '@/pages/demo2'
 
 const Demo1 =  () => {
   const navigate = useNavigate();
   const [showNormalPortal, setShowNormalPortal] = useState(false)
   const { isBlink, startBilnk, stopBlink } = messageFactory();
   const [count, setCount] = useState(0)
-  const location = useLocation();
 
   return (
     <div className="commonPage">
@@ -25,7 +22,7 @@ const Demo1 =  () => {
         // !isBlink ? startBilnk('五条新消息') : stopBlink()
         startBilnk(`${count}条新消息`)
         setCount(count+1);
-      }} onDoubleClick={() => stopBlink()}>消息闪烁</Button>
+      }} onDoubleClick={() => stopBlink()}>{isBlink ? '停止闪烁' : '消息闪烁'}</Button>
 
 
       {// 直接挂载到body下
@@ -36,23 +33,11 @@ const Demo1 =  () => {
         )
       }
 
-      {/* <BodyPortal> */}
-        {/* <TransitionSwitch/> */}
-        <Routes location={location}>
-          {/* {
-            portalRoutes.map((route: any) => {
-              return (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.component}
-                />
-              )
-            })
-          } */}
-          <Route path='/demo1/demo2' element={<Demo2 />} />
-        </Routes>
-      {/* </BodyPortal> */}
+      <BodyPortal>
+        <TransitionSwitch>
+          <Outlet />
+        </TransitionSwitch>
+      </BodyPortal>
     </div>
   )
 }

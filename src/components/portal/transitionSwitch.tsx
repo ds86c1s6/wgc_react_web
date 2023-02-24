@@ -1,8 +1,8 @@
 import React, {} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Routes, Route } from 'react-router-dom'
 import { portalRoutes } from '@/routes/routes'
 import { createBrowserHistory } from 'history'
+import './index.less'
 
 const DEFAULT_CONFIG = {
   enter: 'from-right',
@@ -16,7 +16,7 @@ const getAnimationConfig = () => {
 
 let oldLocation = null;
 // 路由滑动切换组件，给予路由切换动画和持久化功能
-export const TransitionSwitch = () => {
+export const TransitionSwitch = (props) => {
   const history = createBrowserHistory();
   
   let classNames = '';
@@ -26,6 +26,7 @@ export const TransitionSwitch = () => {
     classNames = 'back-' + getAnimationConfig().exit || '';
   }
   oldLocation = location
+  console.log(classNames, history.action, 33333333)
   return (
     <TransitionGroup
       className="router-wrapper"
@@ -35,19 +36,7 @@ export const TransitionSwitch = () => {
         timeout={classNames ? 500 : 0} // 延时
         key={location.pathname}
       >
-        <Routes>
-          {
-            portalRoutes.map((route: any) => {
-              return (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.component}
-                />
-              )
-            })
-          }
-        </Routes>
+        {props.children}
       </CSSTransition>
     </TransitionGroup>
   )

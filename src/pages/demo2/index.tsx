@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 
-
 const Demo2 =  (props) => {
 
   return (

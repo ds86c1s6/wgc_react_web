@@ -1,4 +1,4 @@
-import loadable from '@/components/Loadable'
+import loadable from '@/components/loadable'
 import React, { lazy, ReactElement, Suspense } from 'react'
 import Home from '@/pages/home'
 import Demo1 from '@/pages/demo1'
@@ -12,7 +12,8 @@ export interface RouteItem {
     enter: string;
     exit: string;
   },
-  demoRoot?: boolean
+  demoRoot?: boolean;
+  children?: Array<RouteItem>;
 }
 
 
@@ -44,12 +45,21 @@ const routes: RouteItem[] = [
     description: '主页'
   },
   {
-    path: "/demo1/*",
+    path: "/demo1",
     // component: Layout('/demo1'),
     // component: loadable(() => import('@/pages/demo1')),
     component: <Demo1 />,
     description: 'demo1：portal实现路由持久化',
-    demoRoot: true
+    demoRoot: true,
+    children: [
+      {
+        path: "/demo1/demo2",
+        // component: Layout('/demo1'),
+        component: <Demo2 />,
+        // component: <Demo1 />,
+        description: 'demo2：热得快给你的看热闹广阔的让你的认可'
+      },
+    ]
   },
   // ...portalRoutes
 ];

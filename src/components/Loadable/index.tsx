@@ -1,4 +1,5 @@
 // react路由懒加载
+import React from 'react';
 import Loadable from 'react-loadable';
 
 const LoadingComponent = (props) => {

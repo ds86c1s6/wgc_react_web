@@ -1,6 +1,7 @@
 // react路由懒加载
 import React from 'react';
 import Loadable from 'react-loadable';
+import { Spin } from 'antd';
 
 const LoadingComponent = (props) => {
   if(props.error) {
@@ -10,7 +11,11 @@ const LoadingComponent = (props) => {
   }else if(props.timeOut) {
     return <p>加载超时</p>
   }else if(props.pastDelay) {
-    return <div>加载中...</div>
+    return (
+      <div className='fc'>
+        <Spin size='large' tip="加载中..."></Spin>
+      </div>
+    )
   }
 }
 

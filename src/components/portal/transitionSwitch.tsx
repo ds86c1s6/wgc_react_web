@@ -22,7 +22,6 @@ export const TransitionSwitch = (props) => {
   }
   oldLocation = location
 
-  console.log(location.pathname, classNames, 333333)
   return (
     <TransitionGroup
       className="router-wrapper"

@@ -42,21 +42,21 @@ const routes: RouteItem[] = [
     // component: Layout('/demo1'),
     loadableComponent: loadable(() => import('@/pages/demo1')),
     // component: <Demo1 />,
-    description: 'demo1：portal实现路由持久化',
+    description: 'demo1：portal实现路由持久化+新消息blink',
     demoRoot: true,
     children: [
       // 用于portal与react-transition-group过度的路由不能懒加载，不然第一次跳转的时候没有过度动画
       {
-        path: "/demo1/demo2",
+        path: "/demo1/demo12",
         // component: loadable(() => import('@/pages/demo2')),
         component: <Demo2 />,
-        description: 'demo2：热得快给你的看热闹广阔的让你的认可'
+        description: 'demo12'
       },
       {
-        path: "/demo1/demo3",
+        path: "/demo1/demo13",
         // component: loadable(() => import('@/pages/demo3')),
         component: <Demo3 />,
-        description: 'demo2：热得快给你的看热闹广阔的让你的认可'
+        description: 'demo13'
       },
     ]
   },

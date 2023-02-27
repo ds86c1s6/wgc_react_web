@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, useOutlet } from 'react-router-dom'
+import { useNavigate, useOutlet, Outlet } from 'react-router-dom'
 import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
@@ -42,9 +42,13 @@ const Demo1 =  () => {
 
       <BodyPortal>
         <TransitionSwitch>
-          <>
-          {outlet}
-          </>
+          {/* 这个点需要注意下 */}
+          {/* 1.这样写会没有退出动画效果 */}
+          {/* <Outlet/> */}
+          {/* 2.需要用一个空标签包裹下 */}
+          <React.Fragment>
+            {outlet}
+          </React.Fragment>
         </TransitionSwitch>
       </BodyPortal>
     </div>

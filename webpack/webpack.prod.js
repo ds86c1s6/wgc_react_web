@@ -77,6 +77,7 @@ const webpackConfig = merge(base, {
     ],
   },
 });
-// (构建过程优化)实例化一个速度分析对象(它的wrap方法用来包裹webpack配置)
-const smp = new SpeedMeasureWebpackPlugin();
-module.exports = smp.wrap(webpackConfig);
+// (构建过程优化)实例化一个速度分析对象(它的wrap方法用来包裹webpack配置) // 和minicssextractplugin高版本冲突
+// const smp = new SpeedMeasureWebpackPlugin();
+// module.exports = smp.wrap(webpackConfig);
+module.exports = webpackConfig;

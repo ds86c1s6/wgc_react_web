@@ -1,7 +1,6 @@
 import React, {} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { portalRoutes } from '@/routes/routes'
-import { createBrowserHistory } from 'history'
+import { useNavigationType, useLocation } from 'react-router-dom'
 import './index.less'
 
 const DEFAULT_CONFIG = {
@@ -9,24 +8,21 @@ const DEFAULT_CONFIG = {
   exit: 'to-right'
 }
 
-const getAnimationConfig = () => {
-  const matchedRoute = portalRoutes.find(i => new RegExp(`^${i.path}$`).test(location.pathname));
-  return DEFAULT_CONFIG
-}
-
 let oldLocation = null;
 // 路由滑动切换组件，给予路由切换动画和持久化功能
 export const TransitionSwitch = (props) => {
-  const history = createBrowserHistory();
+  const navigationType = useNavigationType();
+  const location = useLocation();
   
   let classNames = '';
-  if(history.action === 'PUSH') {
-    classNames = 'forward-' + getAnimationConfig().enter || '';
-  }else if(history.action === 'POP' && oldLocation) {
-    classNames = 'back-' + getAnimationConfig().exit || '';
+  if(navigationType === 'PUSH') {
+    classNames = 'forward-' + DEFAULT_CONFIG.enter || '';
+  }else if(navigationType === 'POP' && oldLocation) {
+    classNames = 'back-' + DEFAULT_CONFIG.exit || '';
   }
   oldLocation = location
-  console.log(classNames, history.action, 33333333)
+
+  console.log(location.pathname, classNames, 333333)
   return (
     <TransitionGroup
       className="router-wrapper"

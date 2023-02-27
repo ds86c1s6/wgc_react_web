@@ -4,13 +4,13 @@
  * 启动：message.start(msg)
  * 关闭：message.stop();
  */
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const messageFactory = (
   interval: number = 600
 ): { isBlink: boolean; startBilnk: Function; stopBlink: Function } => {
   const [isBlink, setIsBlink] = useState<NodeJS.Timer | string>("");
-  const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
   let time = 0;
   // 开始闪烁
   const startBilnk = (msg) => {

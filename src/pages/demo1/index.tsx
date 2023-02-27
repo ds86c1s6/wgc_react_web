@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate, Routes, Route, useLocation, Outlet } from 'react-router-dom'
+import { useNavigate, useOutlet } from 'react-router-dom'
 import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
@@ -10,19 +10,26 @@ const Demo1 =  () => {
   const navigate = useNavigate();
   const [showNormalPortal, setShowNormalPortal] = useState(false)
   const { isBlink, startBilnk, stopBlink } = messageFactory();
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
+  const outlet = useOutlet();
 
   return (
     <div className="commonPage">
       <Button onClick={() => setShowNormalPortal(true)}>非路由情况下的普通portal使用</Button>
       <Divider />
-      <Button onClick={() => navigate('/demo1/demo2')}>动画路由切换</Button>
+      <Button onClick={() => navigate('/demo1/demo2')}>portal动画路由跳转demo2</Button>
+      <Divider />
+      <Button onClick={() => navigate('/demo1/demo3')}>portal动画路由跳转demo3</Button>
       <Divider />
       <Button onClick={() => {
         // !isBlink ? startBilnk('五条新消息') : stopBlink()
         startBilnk(`${count}条新消息`)
         setCount(count+1);
-      }} onDoubleClick={() => stopBlink()}>{isBlink ? '停止闪烁' : '消息闪烁'}</Button>
+      }}>{'消息闪烁' + count}</Button>
+      <Button onClick={() => {
+        setCount(0);
+        stopBlink();
+      }}>{'停止闪烁'}</Button>
 
 
       {// 直接挂载到body下
@@ -35,7 +42,9 @@ const Demo1 =  () => {
 
       <BodyPortal>
         <TransitionSwitch>
-          <Outlet />
+          <>
+          {outlet}
+          </>
         </TransitionSwitch>
       </BodyPortal>
     </div>

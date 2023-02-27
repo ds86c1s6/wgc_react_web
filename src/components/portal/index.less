@@ -16,7 +16,7 @@
   z-index: 2;
   opacity: 1;
   transform: translateX(0);
-  transition: all 500ms;
+  transition: transform 500ms;
 }
 
 .forward-from-right-exit {
@@ -26,8 +26,8 @@
 
 .forward-from-right-exit-active {
   z-index: 1;
-  opacity: .3;
-  transition: all 500ms;
+  opacity: 0;
+  transition: transform 500ms;
 }
 
 /**
@@ -35,14 +35,14 @@
  */
 .back-to-right-enter {
   z-index: 1;
-  opacity: .3;
+  opacity: 1;
 }
 
 .back-to-right-enter-active {
   z-index: 1;
   opacity: 1;
   transform: translateX(0);
-  transition: all 500ms;
+  transition: transform 500ms;
 }
 
 .back-to-right-exit {
@@ -53,9 +53,9 @@
 
 .back-to-right-exit-active {
   z-index: 2;
-  opacity: 0;
+  opacity: 1;
   transform: translate(100%);
-  transition: all 500ms;
+  transition: transform 500ms;
 }
 
 /**

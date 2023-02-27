@@ -2,11 +2,13 @@ import loadable from '@/components/loadable'
 import React, { lazy, ReactElement, Suspense } from 'react'
 import Home from '@/pages/home'
 import Demo1 from '@/pages/demo1'
-import Demo2 from '@/pages/demo2'
+import Demo2 from '@/pages/demo1/demo12'
+import Demo3 from '@/pages/demo1/demo13'
 
 export interface RouteItem {
   path: string;
-  component: ReactElement;
+  component?: any;
+  loadableComponent?: any;
   description: string;
   animationConfig?: {
     enter: string;
@@ -26,41 +28,37 @@ export interface RouteItem {
 //   )
 // }
 
-
-export const portalRoutes = [
-  {
-    path: "/demo2",
-    // component: Layout('/demo1'),
-    component: <Demo2 />,
-    // component: <Demo1 />,
-    description: 'demo2：热得快给你的看热闹广阔的让你的认可'
-  },
-]
 const routes: RouteItem[] = [
+  // 非portal和react-transition-group过度的路由可以懒加载
   {
     path: "/home",
     // component: Layout('/'),
-    // component: loadable(() => import('@/pages/home')),
-    component: <Home />,
+    loadableComponent: loadable(() => import('@/pages/home')),
+    // component: <Home />,
     description: '主页'
   },
   {
     path: "/demo1",
     // component: Layout('/demo1'),
-    // component: loadable(() => import('@/pages/demo1')),
-    component: <Demo1 />,
+    loadableComponent: loadable(() => import('@/pages/demo1')),
+    // component: <Demo1 />,
     description: 'demo1：portal实现路由持久化',
     demoRoot: true,
     children: [
+      // 用于portal与react-transition-group过度的路由不能懒加载，不然第一次跳转的时候没有过度动画
       {
         path: "/demo1/demo2",
-        // component: Layout('/demo1'),
+        // component: loadable(() => import('@/pages/demo2')),
         component: <Demo2 />,
-        // component: <Demo1 />,
+        description: 'demo2：热得快给你的看热闹广阔的让你的认可'
+      },
+      {
+        path: "/demo1/demo3",
+        // component: loadable(() => import('@/pages/demo3')),
+        component: <Demo3 />,
         description: 'demo2：热得快给你的看热闹广阔的让你的认可'
       },
     ]
   },
-  // ...portalRoutes
 ];
 export default routes

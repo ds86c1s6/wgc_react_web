@@ -12,7 +12,7 @@ const LoadingComponent = (props) => {
     return <p>加载超时</p>
   }else if(props.pastDelay) {
     return (
-      <div className='fc'>
+      <div className='fc' style={{ height: '100vh' }}>
         <Spin size='large' tip="加载中..."></Spin>
       </div>
     )

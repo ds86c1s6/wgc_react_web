@@ -7,7 +7,7 @@ const LoadingComponent = (props) => {
   if(props.error) {
     // 1.页面更新拉了新的js文件
     // 2.接口请求错误，js没拿到
-    return <div>模块已更新，请刷新页面</div>
+    return <div>模块已更新，请刷新页面11</div>
   }else if(props.timeOut) {
     return <p>加载超时</p>
   }else if(props.pastDelay) {

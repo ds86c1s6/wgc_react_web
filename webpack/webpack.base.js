@@ -72,14 +72,14 @@ module.exports = {
       },
       // css文件处理
       {
-        test: /\.css/,
+        test: /\.css$/,
         exclude: /\.module\.css$/,
         use: [
           // 不能和style-loader一起使用，会互斥。
           // 将js中import引入的样式文件代码，打包成一个实际的css文件，结合html-webpack-plugin，在dist/index.html中以link插入css文件，默认将多个css文件打包合成一个
           cssLoader,
           // style-loader把引入的样式文件代码打包到js文件中，并将样式自动插入<style>标签中
-          "style-loader",
+          // "style-loader",
           // css-loader处理 css 文件
           "css-loader",
         ],

@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react'
 import { Button, List } from 'antd'
 import { useNavigate, To } from 'react-router-dom'
 import routes, { RouteItem } from '@/routes/routes'
-import { isDemoRoute } from '@/utils/utils'
 
 interface ListItemProps {
   component: ReactElement;

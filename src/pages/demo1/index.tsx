@@ -4,7 +4,8 @@ import { Button, Divider } from 'antd'
 import { BodyPortal } from '@/components/portal'
 import { TransitionSwitch } from '@/components/portal/transitionSwitch'
 import styles from './index.module.less'
-import messageFactory from '@/utils/message-blink'
+import messageFactory from '@/utils/message-blink';
+import { useShowInstance } from '@/components/global-modal'
 
 const Demo1 =  () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Demo1 =  () => {
   const { isBlink, startBilnk, stopBlink } = messageFactory();
   const [count, setCount] = useState(1)
   const outlet = useOutlet();
+  const showInstanceModal = useShowInstance();
 
   return (
     <div className="commonPage">
@@ -30,6 +32,8 @@ const Demo1 =  () => {
         setCount(0);
         stopBlink();
       }}>{'停止闪烁'}</Button>
+      <Divider></Divider>
+      <Button onClick={() => showInstanceModal().then(res => console.log(res, 3333333)).catch(err => console.log(err, 444444))}>流水实例弹窗实例</Button>
 
       {// 直接挂载到body下
         showNormalPortal && (

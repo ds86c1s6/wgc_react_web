@@ -3,7 +3,7 @@
     // "incremental": true, // TS编译器在第一次编译之后会生成一个存储编译信息的文件，第二次编译会在第一次的基础上进行增量编译，可以提高编译的速度
     // "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
     // "diagnostics": true, // 打印诊断信息 
-    "target": "ES5", // 目标语言的版本
+    "target": "es2015", // 目标语言的版本
     "module": "ES2022", // 生成代码的模板标准
     // "outFile": "./app.js", // 将多个相互依赖的文件生成一个文件，可以用在AMD模块中，即开启时应设置"module": "AMD",
     "lib": ["DOM", "ES2015", "ScriptHost", "ES2019.Array"], // TS需要引用的库，即声明文件，es5 默认引用dom、es5、scripthost,如需要使用es的高级版本特性，通常都需要配置，如es8的数组新特性需要引入"ES2019.Array",

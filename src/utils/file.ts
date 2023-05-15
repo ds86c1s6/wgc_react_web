@@ -1,3 +1,5 @@
+// https://blog.51cto.com/hefeng6500/3089448  xhr下各对象
+
 // base64转Arraybuffer
 export function base64ToArraybuffer(data: string): Uint8Array {
   if (!data) return;

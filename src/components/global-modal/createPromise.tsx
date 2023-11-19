@@ -12,7 +12,7 @@ const renderModal = (Template, props) => {
   document.body.appendChild(dom);
   const template = (
     <Container>
-      <Template {...props} /> 
+      <Template {...props} />
     </Container>
   )
   ReactDOM.render(template, dom)
@@ -21,10 +21,10 @@ const renderModal = (Template, props) => {
 
 export const create = (Template: any, data = {}, options?: { unmountDelay?: number }) => {
   let instance = null;
-  
+
   const unmountNode = () => {
     setTimeout(() => {
-      if(instance) {
+      if (instance) {
         document.body.removeChild(instance)
       }
     }, options?.unmountDelay || 0);
@@ -39,15 +39,15 @@ export const create = (Template: any, data = {}, options?: { unmountDelay?: numb
     instance = renderModal(Template, props)
   })
 
-  const resolveCallBack = (val) => {
-    unmountNode();
-    return Promise.resolve(val)
-  }
+  // const resolveCallBack = (val) => {
+  //   unmountNode();
+  //   return Promise.resolve(val)
+  // }
 
-  const rejectCallBack = (err) => {
-    unmountNode();
-    return Promise.reject(err)
-  }
+  // const rejectCallBack = (err) => {
+  //   unmountNode();
+  //   return Promise.reject(err)
+  // }
 
-  return p.then(resolveCallBack, rejectCallBack)
+  return p
 }

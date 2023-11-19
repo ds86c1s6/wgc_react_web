@@ -10,19 +10,18 @@ export const showInstanceModal = (props?: any) => {
 };
 
 export function useShowInstance() {
-  const isShowModal = true;
 
   const showModal = async () => {
     return new Promise((resolve, reject) => {
-      if (isShowModal) {
-        showInstanceModal()
-          .then((value) => {
-            resolve(value);
-          })
-          .catch((value) => {
-            reject(value);
-          });
-      }
+      // 其他业务逻辑？
+
+      showInstanceModal()
+        .then((value) => {
+          resolve(value);
+        })
+        .catch((value) => {
+          reject(value);
+        });
     });
   };
 

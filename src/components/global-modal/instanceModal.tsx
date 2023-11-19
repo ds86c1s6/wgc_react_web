@@ -29,12 +29,12 @@ export const InstanceModal = React.forwardRef<HTMLDivElement, InstanceModalProps
 
   const handleResolve = () => {
     closeModal();
-    onResolve && onResolve();
+    onResolve && onResolve(123);
   }
 
   const handleReject = () => {
     closeModal();
-    onReject && onReject();
+    onReject && onReject(456);
   }
 
   return (

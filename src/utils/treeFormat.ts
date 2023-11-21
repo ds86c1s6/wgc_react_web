@@ -1,95 +1,24 @@
 /**
- * 将特定的扁平结构数组转为树形结构
- * @param {Array} list 数组
- * @param {Object} options 数组中每个数据项的标识，父节点标识，子节点标书数组
+将数据转成Map存储再进行处理，根据如下代码可知，实现结构转变只需要循环一次，并且这种方式的时间复杂度为O(n) ，空间复杂度为O(n)，比递归的性能要好很多，我们项目中肯定是追求性能最优。具体实现思路如下：
+声明一个空数组result存放结果，声明一个Map对象存放以id为key，以{ ...item, children: [] }为value的数据
+对数组for...of 循环
+循环中，itemMap存储数据Map数据，并为每一项创建children属性
+pid为0说明是根数据，把pid为0的这一项放到result中
+pid不为0说明该项为子数据且已存在父级数据（因为itemMap(pid)存在），所以只需要把该项数据push到父级数据的children属性。
  */
-export function transformTree(list, options = {}) {
-  const {
-    key = 'id',
-    child = 'children',
-    parent = 'parent'
-  } = options;
-
-  const tree = [];
-  const record = {};
-
-  for (let i = 0, len = list.length; i < len; i++) {
-    const item = list[i];
-    const id = item[key];
-
-    if (!id) {
-      continue;
-    }
-
-    if (record[id]) {
-      item[child] = record[id];
+function recurrenceFilter(data) {
+  const result = []; // 存放结果集
+  const itemMap = {}; //
+  for (const item of data) {
+    itemMap[item.id] = { ...item, children: [] };
+    const id = item.id;
+    const pid = item.pid;
+    const treeItem = itemMap[id];
+    if (pid === 0) {
+      result.push(treeItem);
     } else {
-      item[child] = record[id] = [];
-    }
-
-    if (item[parent]) {
-      const parentId = item[parent];
-
-      if (!record[parentId]) {
-        record[parentId] = [];
-      }
-
-      record[parentId].push(item);
-    } else {
-      tree.push(item);
+      itemMap[pid].children.push(treeItem);
     }
   }
-
-  return tree;
+  return result;
 }
-
-/**
- * 将树形结构转成扁平化数组
- * @param {Array} sourceTree tree的数据源 
- * @param {*} uniqueKey  唯一键，根据该key值转换
- */
-export const FlatTreeToArr = (source) => {
-  const flatData = [];
-  for (let i = 0; i < source.length; i++) {
-    flatData.push(source[i]);
-    if (source[i].children?.length) {
-      const result = FlatTreeToArr(source[i].children);
-      flatData.push(...result);
-    }
-  }
-  return flatData;
-};
-
-
-
-/**
- * 获取指定值所在的tree的所有上级
- * 返回指定parent的key集合
- * @param {object} options 对应配置
- *      source  数据源
- *      targetKey 查找值的字段名
- *      targetValue 查找的值
- *      parentKey 对应上级的字段名
- */
-export const GetTreeTargetParents = (options = {}) => {
-  options = {
-    source: [],
-    targetKey: 'id',
-    targetValue: '',
-    parentKey: 'parentId',
-    ...options
-  };
-  const { source, targetKey, targetValue, parentKey } = options;
-  if (!targetValue) return [];
-  let parentList = [];
-  let allList = FlatTreeToArr(source);
-  const findTargetInArr = (value) => {
-    const targetItem = allList.find((item) => item[targetKey] === value);
-    if (targetItem) {
-      parentList.push(targetItem);
-      findTargetInArr(targetItem[parentKey]);
-    }
-  };
-  findTargetInArr(targetValue);
-  return parentList;
-};
